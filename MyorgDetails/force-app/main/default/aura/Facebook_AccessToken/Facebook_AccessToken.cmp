@@ -1,0 +1,12 @@
+<aura:component controller="UserAuthenticationResponseParser" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+<h1>hi</h1>
+      You Are Connected With Facebook Page!!  
+    <aura:attribute name="AccessToken" type="String" />
+     <aura:attribute name="link" type="String" />
+     <aura:handler name="init" value="{!this}" action="{!c.init}" />	
+     <lightning:input type="string" name="input1"  label="Enter a link" value="{!v.link}"/>
+     <lightning:button variant="success" label="Success" title="Success" onclick="{! c.PostOnFb }"/>
+
+       
+ 
+</aura:component>

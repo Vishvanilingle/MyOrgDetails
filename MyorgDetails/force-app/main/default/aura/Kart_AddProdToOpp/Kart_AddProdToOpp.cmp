@@ -1,0 +1,241 @@
+<aura:component controller="AuraSampleController" Implements="flexipage:availableForRecordHome,force:hasRecordId">
+    
+    <aura:attribute name="oppObj" type="OpportunityLineItem" default="{'sobjectType':'OpportunityLineItem', 'Name':'op1','WhoId':'0066F00000zYSDBQA4'}"/>
+    <aura:attribute name="displayProductList" type="OpportunityLineItem[]"/>
+    <aura:attribute name="productList" type="OpportunityLineItem[]"/>
+    <aura:attribute name="allProductList" type="OpportunityLineItem[]"/>
+    <aura:attribute name="selectedProductList" type="object[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
+    <aura:attribute name="isOpen" type="boolean" default="false"/>
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="fields" type="String[]" default="['Name','ProductCode','Quantity','UnitPrice','Description']" />
+<aura:attribute name="Status" type="Boolean" default="true" />  
+     <aura:if isTrue="{!v.Status}">
+    <div class="slds-m-around--xx-large">
+        <div class="slds-float_right slds-p-bottom_small">
+            <h1 class="slds-page-header__title">Add 
+                <lightning:buttonIcon iconName="utility:add"  size="large" variant="bare" alternativeText="Add" onclick="{!c.addRow}"/>
+            </h1>
+        </div>
+        <div class="container-fluid">
+            
+            
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer"> 
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate">No.</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Opportunity Name">Opportunity</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Product Name">Name</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="ProductCode">Product Code</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Quantity">Quantity</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="UnitPrice">Unit Price</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Description">Description</div>
+                        </th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    
+                    <!--*************************product table related to opportunty*********************-->
+                    
+                    
+                    <aura:iteration items="{!v.displayProductList}" var="product" indexVar="index">
+                        <tr>
+                            <td> 
+                                {!index + 1}
+                            </td>
+                            <td>
+                                <lightning:input name="oppName" type="text" maxlength="50" label="Opportunity Name" value="{!product.Name}" disabled="true"/>
+                            </td>
+                            <td>
+                                <lightning:input name="prodName" type="text" maxlength="50" label="Product Name" value="{!product.Product2.Name}" disabled="true"/>
+                            </td>
+                            <td>
+                                <lightning:input name="ProductCode" type="text"  maxlength="10" label="Product Code" value="{!product.ProductCode}" disabled="true"/>
+                            </td>
+                            <td>
+                                <lightning:input name="Quantity" type="number" maxlength="10" label="Quantity" value="{!product.Quantity}" />
+                            </td>
+                            <td>
+                                <lightning:input name="UnitPrice" type="currency" maxlength="10" label="UnitPrice" value="{!product.UnitPrice}" />
+                            </td>
+                            <td>
+                                <lightning:input name="Description" type="text" maxlength="255" label="Description" value="{!product.Description}" />
+                            </td>
+                            
+                        </tr>
+                    </aura:iteration>
+                    
+                    
+                    
+                    
+                    <!-- ************   by recordForm displaying  list of products    *************
+                    
+                    
+     <aura:iteration items="{!v.allProductList}" var="obj" indexVar="index">
+                            
+                            
+                            <tr>
+                                {!index+1}.
+                            </tr>
+                            
+                            <lightning:recordForm   objectApiName="OpportunityLineItem"  onsubmit="" onsuccess=""  recordId="{!v.recordId}" fields="{!v.fields}" columns="5" >    
+                                
+                                <tr>
+                                    <td class="slds-cell-edit" role="gridcell">
+                                        <lightning:inputField fieldName="Name" />
+                                    </td>
+                                    <td class="slds-cell-edit" role="gridcell">
+                                        <lightning:inputField fieldName="ProductCode" />
+                                    </td>
+                                    <td class="slds-cell-edit" role="gridcell">
+                                        <lightning:inputField fieldName="QuantityUnitOfMeasure"/>
+                                    </td>
+                                    <td aria-readonly="true" class="slds-cell-edit" role="gridcell">
+                                        <lightning:inputField fieldName="Family" />
+                                    </td>
+                                    <td aria-readonly="true" class="slds-cell-edit" role="gridcell">
+                                        <lightning:inputField fieldName="Description" />
+                                    </td>
+                                    
+                                </tr>
+                            </lightning:recordForm>
+                            
+                            <br/>
+                        </aura:iteration>
+
+     -->
+                    
+                    <aura:iteration items="{!v.selectedProductList}" var="product" indexVar="index">
+                        <tr>
+                            <td> 
+                                
+                            </td>
+                            <td>
+                                <lightning:input name="oppName" type="text" maxlength="50" label="Opportunity Name" value="" disabled="true"/>
+                            </td>
+                            <td>
+                                <lightning:input name="prodName" type="text" maxlength="50" label="Product Name" value="{!product.prd.Name}" disabled="true"/>
+                            </td>
+                            <td>
+                                <lightning:input name="ProductCode" type="text"  maxlength="10" label="Product Code" value="{!product.prd.ProductCode}" disabled="true"/>
+                            </td>
+                            <td>
+                                <lightning:input name="Quantity" type="number" maxlength="10" label="Quantity" value="{!product.prd.Quantity}" />
+                            </td>
+                            <td>
+                                <lightning:input name="UnitPrice" type="currency" maxlength="10" label="UnitPrice" value="{!product.prd.UnitPrice}" />
+                            </td>
+                            <td>
+                                <lightning:input name="Description" type="text" maxlength="255" label="Description" value="{!product.prd.Description}" />
+                            </td>
+                            <td style="padding-top: 2%;">
+                                <a onclick="{!c.removeRow}" data-record="{!index}">
+                                    <lightning:icon iconName="utility:delete" size="small" alternativeText="Delete"/>
+                                    <span class="slds-assistive-text">Delete</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+            
+            <div class="slds-align_absolute-center slds-p-top_small">
+                <lightning:button variant="brand" label="Save" title="Brand action" onclick="{!c.save}" />
+            </div>
+            
+            <aura:if isTrue="{!v.isOpen}"> 
+                <!--modal box-->
+                
+                <div class="demo-only demo-only_viewport" style="height:640px">
+                    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container">
+                            <header class="slds-modal__header">
+                                <!--<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                                
+                                                <span class="slds-assistive-text">Close</span>
+                                            </button> -->
+                                
+                                <lightning:buttonIcon iconName="utility:close"
+                                                      onclick="{! c.closeModel }"
+                                                      alternativeText="close"
+                                                      variant="bare-inverse"
+                                                      class="slds-modal__close"/>
+                                
+                                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Add Products</h2>
+                                <h5 >Price Book: Standard</h5>
+                            </header>
+                            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                                
+                                <div >        
+                                    <table class="slds-table slds-table_bordered slds-table_cell-buffer" > 
+                                        <thead>
+                                            <tr class="slds-text-title_caps">
+                                                <th scope="col">
+                                                    <input type="checkbox" name="options" id="checkbox-44" value="checkbox-44" checked="" />
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="slds-truncate">No.</div>
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="slds-truncate" title="Account Name">Name</div>
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="slds-truncate" title="ProductCode">Product Code</div>
+                                                </th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <aura:iteration items="{!v.allProductList}" var="newPrd" indexVar="index">
+                                                <tr>
+                                                    <th scope="col">
+                                                        <ui:inputCheckbox text="{!newPrd.isSelected}" aura:id="checkbox" value="{!newPrd.isSelected}"/>
+                                                        
+                                                    </th>
+                                                    <td> 
+                                                        {!index + 1}
+                                                    </td>
+                                                    <td >
+                                                        <div class="slds-truncate"  title="{!newPrd.prd.Name}">{!newPrd.prd.Name}</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-truncate"  title="{!newPrd.prd.ProductCode}">{!newPrd.prd.ProductCode}</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="slds-truncate"  title="{!newPrd.prd.IsActive}">{!newPrd.prd.IsActive}</div>
+                                                    </td>
+                                                </tr>
+                                            </aura:iteration>
+                                        </tbody>
+                                    </table>                          
+                                </div>
+                            </div>
+                            <footer class="slds-modal__footer slds-modal__footer_directional">
+                                <button class="slds-button slds-button_brand" onclick="{!c.saveAndNext}" style="float: right;">Save &amp; Next</button>
+                            </footer>
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                </div>
+            </aura:if>
+            
+            
+            
+        </div>
+    </div>
+    </aura:if>
+</aura:component>

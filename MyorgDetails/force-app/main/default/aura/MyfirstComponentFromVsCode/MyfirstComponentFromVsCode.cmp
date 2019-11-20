@@ -1,0 +1,30 @@
+<aura:component controller="MyFirstApexFROMVs" >
+   <aura:attribute name="ValueOneisTrue" type="boolean" default="true"/>
+   <aura:attribute name="ValueTwoisFalse" type="boolean" default="false"/>
+   <aura:attribute name="ValuethreeisTrue" type="boolean" default="true"/>
+   <aura:attribute name="ValueFourisFalse" type="boolean" default="false"/>
+ 
+  <!--aura:if sample -->
+   <aura:if  isTrue="{!and(v.ValueOneisTrue, v.ValuethreeisTrue)}" >
+      <div style="padding:15px; background-color:LightBlue">
+         and ==> this div show because both attribute is true
+      </div>
+   </aura:if>
+   <!--aura:if with aura:set sample-->
+   <aura:if  isTrue="{!or(v.ValueFourisFalse, v.ValueTwoisFalse)}" >
+      <div style="padding:15px; background-color:GreenYellow">
+         or ==> this div show because one attribute is true
+      </div>
+      <aura:set attribute="else">
+         <div style="padding:15px; background-color:GreenYellow">
+            or ==> this aura:set div show because both attribute is false
+         </div>
+      </aura:set>
+   </aura:if>
+   <!--aura:if with nested and condition-->
+   <aura:if  isTrue="{!or(and(v.ValueOneisTrue, v.ValuethreeisTrue) , v.ValueTwoisFalse ) }" >
+      <div style="padding:15px; background-color:LightGreen  ">
+         nested condition div show because in statment 1 of or()condition returns true.
+      </div>
+   </aura:if>
+</aura:component>
