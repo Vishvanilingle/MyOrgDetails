@@ -5,6 +5,7 @@ import getContacts from '@salesforce/apex/contractdetailscontroller.getContractb
 
 export default class ContractDealisFormTabel extends LightningElement {
     
+    
     @track  ContractsBriefs; // return Accounts from apex class.
     @api Contract_Brief__c;
     @track error; // to show error message from apex controller.
