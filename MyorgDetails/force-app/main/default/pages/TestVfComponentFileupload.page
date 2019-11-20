@@ -1,0 +1,62 @@
+<apex:page standardController="Account" docType="html-5.0" >
+    <c:DragDrop parentId="0016F00002iaJrDQAU" DragDropHeight="100px" />
+    <script type="text/javascript">
+function showPop()
+{
+document.getElementById("inlineEditDialog").style.visibility = "visible";
+}
+function closePop()
+{
+document.getElementById("inlineEditDialog").style.visibility = "hidden";
+window.location.href = window.location.href;
+}
+function updateFileValue(obj) {
+jQuery('.fileProxy').val(jQuery(obj).val());
+}
+function focusInput(focusClass, normalClass) {
+var elements = document.getElementsByTagName("input");
+for (var i=0; i < elements.length; i++) {
+if (elements[i].type != "button" && elements[i].type != "submit" && elements[i].type != "reset") {
+elements[i].onfocus = function() { this.className = focusClass; };
+elements[i].onblur = function() { this.className = normalClass||''; };
+}
+}
+}
+(function() {
+
+function FileDragHover(e) {
+e.stopPropagation();
+e.preventDefault();
+e.target.className = (e.type == "dragover" ? "hover" : "");
+document.getElementById("filearea").className = (e.type == "dragover" ? "areahover" : "");
+}
+
+function FileSelectHandler(e) {
+FileDragHover(e);
+var files = e.target.files || e.dataTransfer.files;
+var f = files[0];
+var reader = new FileReader();
+reader.onload = function(evt){
+document.getElementById("page:form:block:csvBody").value = evt.target.result;
+calculateResult();
+}
+reader.readAsText(f);
+document.getElementById("page:form:block:csvName").value = f.name;
+}
+
+function Init() {
+var filedrag = document.getElementById("filedrag");
+var xhr = new XMLHttpRequest();
+if (xhr.upload) {
+filedrag.addEventListener("dragover", FileDragHover, false);
+filedrag.addEventListener("dragleave", FileDragHover, false);
+filedrag.addEventListener("drop", FileSelectHandler, false);
+filedrag.style.display = "block";
+}
+}
+if (window.File && window.FileList && window.FileReader) {
+Init();
+}
+})();
+</script>
+</apex:page>

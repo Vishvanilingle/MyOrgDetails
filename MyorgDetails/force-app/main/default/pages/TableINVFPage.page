@@ -1,0 +1,33 @@
+<apex:page controller="AccountContactHierarchy">
+    <apex:form >
+    	<apex:pageBlock title="Accounts and Contacts">
+            <table border="1">
+                <tr>
+                	<th>Account Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>City</th>
+                    <th>State</th>
+                </tr>
+                <apex:repeat value="{!accounts}" var="a">
+                    <tr>
+                        <td>{!a.Name}</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <apex:repeat value="{!a.Contacts}" var="c">
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>{!c.FirstName}</td>
+                            <td>{!c.LastName}</td>
+                            <td>{!c.MailingCity}</td>
+                            <td>{!c.MailingState}</td>
+                        </tr>
+                    </apex:repeat>
+                </apex:repeat>
+            </table>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

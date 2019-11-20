@@ -1,0 +1,105 @@
+<apex:page standardController="Case" extensions="AttachmentActionFunction">
+<style>
+   html {
+  margin: 30px;
+}
+.fileType {
+    display: block;
+    position: relative;
+    width: 200px;
+    margin: auto;
+    cursor: pointer;
+    border: 0;
+    height: 60px;
+    border-radius: 5px;
+    outline: 0;
+     color: #FF1111;
+    padding: .125rem;
+    border: 1px dashed #dddbda;
+    border-radius: .25rem;
+}
+.fileType:hover:after {
+    background: #FF1111;
+}
+.fileType:after {
+    transition: 200ms all ease;
+    border-bottom: 3px solid rgba(0,0,0,.2);
+    background: #000000;
+    background-image:url('http://i.stack.imgur.com/CVpp3.jpg');
+    text-shadow: 0 2px 0 rgba(0,0,0,.2);
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: 'Upload Something';
+    line-height: 60px;
+    border-radius: 5px;
+}
+    </style>
+    <script type='text/javascript'>
+    
+var maxStringSize = 6000000;
+var attachmentList;
+var j;
+function uploadFiles()
+{
+    input = document.getElementById('fileinput');
+    attachmentList = input.files;
+    if(j == undefined) 
+    j = 0;   
+    var file;
+    if(j < attachmentList.length)
+    {
+        file = attachmentList[j];
+         console.log('file');
+      
+         console.log(file.type);
+     var name = file.name;
+        var type=file.type;
+        var reader = new FileReader();  
+        reader.onload = function(e) {  
+         var attachmentbodybase64 = window.btoa(reader.result)
+           console.log('attachmentbodybase64');
+            console.log(attachmentbodybase64);
+        
+            if(attachmentbodybase64.length > maxStringSize )
+            alert("File size is too large to handle");
+            else
+            {
+                j++;
+                saveFileAF(attachmentbodybase64, name);
+            }
+        }
+         reader.readAsDataURL(file);
+    }
+    else
+    {
+        console.log('this is end');
+        // var url = window.location.origin + '/'+"{!$CurrentPage.parameters.Id}";
+        // console.log(url);
+        //  window.location.href = url;
+    }
+    
+ }
+</script>
+
+<apex:form >
+  <input type= "file" Id= "fileinput"  multiple="multiple" styleclass="fileType"/>
+    <apex:commandButton onclick="uploadFiles(); return false;" value="Upload"/>
+    <apex:actionFunction name="saveFileAF" 
+         action="{!saveFile}" oncomplete="uploadFiles()" rerender="form"  status="uploading">
+        <apex:param name="base64File" value="" assignTo="{!base64}"/>
+        <apex:param name="fileName" value="" assignTo="{!fileName}"/>
+    </apex:actionFunction>
+    <apex:actionStatus id="uploading" >
+        <apex:facet name="start" >
+            <img src="/img/loading.gif" />                    
+  </apex:facet>
+ </apex:actionStatus>    
+</apex:form>
+</apex:page>

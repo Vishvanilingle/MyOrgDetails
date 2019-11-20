@@ -1,0 +1,9 @@
+<apex:page controller="testfbpage1controller" title="Demo">
+    <apex:pageBlock title="Facebook page Details">
+    	<apex:outputText value="{!id1}">-->Id</apex:outputText>
+        
+        <apex:outputText value="{!name1}">-->Name</apex:outputText>
+       <!-- <apex:outputText value="{!website}">Website</apex:outputText>/>
+        <apex:outputText value="{!fancount}">fancount</apex:outputText>/-->
+    </apex:pageBlock>
+</apex:page>

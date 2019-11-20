@@ -1,0 +1,14 @@
+<apex:page sidebar="false" controller="SurveyClass">
+    <!--VF PAGE BLOCK-->
+    <apex:form ><apex:pageBlock >
+       <apex:repeat value="{!wrapList}" var="wa" >
+             <apex:pageBlockSection title="{!wa.q.Question__c}">
+             <apex:selectRadio value="{!wa.isSelected}">
+           <apex:selectOptions value="{!wa.options}"/>
+           </apex:selectRadio><p/>
+        </apex:pageBlockSection>
+        </apex:repeat>
+         <apex:commandButton value="Save" action="{!submit}" />
+        </apex:pageBlock>
+        </apex:form>
+        </apex:page>
