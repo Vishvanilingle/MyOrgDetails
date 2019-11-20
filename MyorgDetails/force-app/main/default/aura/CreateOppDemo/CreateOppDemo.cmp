@@ -1,0 +1,21 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+ <lightning:recordEditForm aura:id="recordEditForm" 
+                              objectApiName="Opportunity">
+        <lightning:messages />
+        <lightning:inputField fieldName="Name" />
+        <lightning:inputField fieldName="Amount" />
+        
+        <lightning:inputField fieldName="CloseDate" />
+        <lightning:inputField fieldName="Description" />
+        <lightning:inputField fieldName="StageName" />
+        <lightning:inputField fieldName="Probability" />
+        <lightning:inputField fieldName="Type" />
+        <lightning:inputField fieldName="LeadSource" />
+        
+        <lightning:inputField fieldName="CurrentGenerators__c" />
+        <lightning:inputField fieldName="TrackingNumber__c" />
+        
+        
+        <lightning:button class="slds-m-top_small" type="submit" label="Create new" />
+    </lightning:recordEditForm>	
+</aura:component>

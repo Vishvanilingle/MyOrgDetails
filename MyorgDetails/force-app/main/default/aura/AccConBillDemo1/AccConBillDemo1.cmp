@@ -1,0 +1,189 @@
+<aura:component controller="AccConDemoclass1" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="wrapaccountList" type="AccConDemoclass1.wrapaccount[]" />
+    <aura:attribute name="wrapbookingList" type="object[]"/> 
+    <aura:attribute name="book" type="Booking__c"/> 
+    <aura:handler name="init" value="{!this}" action="{!c.Doinit}"/>
+    <aura:attribute name="ConList" type="Contact[]" />
+    <aura:attribute name="ConId" type="String" />
+    <aura:attribute name="rowIndex" type="String"/>
+    <aura:attribute name="Status" type="Boolean" default="false" />
+    <aura:if isTrue="{!v.wrapaccountList.length>0}">
+        <div class="slds-box">
+            <p>
+                
+                
+                <table class="mycustom slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th scope="col">
+                                <div class="slds-truncate">S.No</div>
+                            </th>
+                            <th class="slds-text-title_caps" scope="col">
+                                <div class="slds-truncate" title="Account Name">Account Name</div>
+                                
+                            </th>  
+                            <th class="slds-text-title_caps" scope="col">
+                                <div class="slds-truncate" title="Account Name">Parant Name</div>
+                                
+                            </th>  
+                            <th class="slds-text-title_caps" scope="col">
+                                <div class="slds-truncate" title="Account Name">Action</div>
+                                
+                            </th>  
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.wrapaccountList}" var="obj" indexVar="index">
+                            <tr class="slds-hint-parent">
+                                 <td> 
+                                {!index+1}
+                                 </td>
+                                <td data-label="Account Name">
+                                    <div class="slds-truncate" title="{!obj.a.Name}">{!obj.a.Name}</div>
+                                </td>
+                                <td data-label="Account Name">
+                                    <div class="slds-truncate" title="{!obj.Name}">{!obj.a.Parent.Name}</div>
+                                </td>
+                                <td data-label="Account Name">
+                                    <ui:inputCheckbox aura:id="input" value="{!obj.isSelected}"/>
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                        
+                    </tbody>
+                </table>
+                
+            </p>
+        </div>
+        <div style="margin-left: 50%;margin-top: 13px;">
+            <button class="slds-button slds-button_brand" onclick="{!c.showContact}">Show Contacts</button>
+        </div>
+        
+    </aura:if>
+    <aura:if isTrue="{!v.ConList.length>0}">
+        <div class="slds-box">
+            <p>
+                <table class="mycustom slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th scope="col">
+                            <div class="slds-truncate">S.No</div>
+                            </th>
+                            <th class="slds-text-title_caps" scope="col">
+                                <div class="slds-truncate" title="Contact Name">First Name</div>
+                            </th>  
+                            <th class="slds-text-title_caps" scope="col">
+                                <div class="slds-truncate" title="Contact Name">Last Name</div>
+                            </th>  
+                            <th class="slds-text-title_caps" scope="col">
+                                <div class="slds-truncate" title="Contact Name">Action</div>
+                            </th>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.ConList}" var="obj" indexVar="index">
+                            <tr class="slds-hint-parent">
+                                <td> 
+                                {!index+1}
+                                </td>
+                                <td data-label="contact Name">
+                                    <div class="slds-truncate" title="{!obj.Name}">{!obj.FirstName}</div>
+                                </td>
+                                <td data-label="contact Name">
+                                    <div class="slds-truncate" title="{!obj.Name}">{!obj.LastName}</div>
+                                </td>
+                                
+                                <td data-label="contact Name">
+                                    <ui:inputRadio aura:id="radio" name="others" value="" text="{!obj.Id}" change="{!c.onGroup}"/>
+                                </td>
+                                
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>
+            </p>
+        </div>
+        
+        <div style="margin-left: 50%;margin-top: 13px;">
+            <lightning:button variant="success" label="Show Booking" title="Success" onclick="{! c.ShowBooking }"/>
+        </div>
+        
+        <aura:if isTrue="{!v.Status}">
+            <!--Header Part--> 
+            <lightning:button variant="brand" label="Add" title="Brand action" onclick="{!c.addNewRow}" /> 
+            <div class="slds-page-header">
+                <h1 class="slds-page-header__title">Booking Details</h1>
+                
+            </div>
+            
+            <!--Table Part-->           
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer"> 
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate">S.No</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Booking Name">Name</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Amount">Ammount</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Action">Action</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Total">CalAmount</div>
+                        </th>
+                    </tr>
+                </thead>   
+                <tbody>
+                    <!--Iterate the child Component for display Table rows 
+               with pass the List Item Index for track the Every child Component 
+               and pass each List Contact Instance -->         
+                    <aura:iteration items="{!v.wrapbookingList}" var="item" indexVar="index">
+                        
+                        <tr class="slds-text-title_caps">
+                            
+                            <td> 
+                                {!index+1}
+                            </td>
+                            <td>
+                                <ui:inputText class="slds-input" value="{!item.b.Name}"/>
+                            </td>
+                            <td>
+                                <ui:inputCurrency  class="slds-input" value="{!item.b.Ammount__c}" change="{!c.Change}"/>
+                            </td>
+                            <td>
+                                <ui:inputCheckbox  class="slds-input" value="{!item.selected}" change="{!c.Change}"/>
+                            </td>
+                            <td>
+                                <ui:inputCurrency  class="slds-input" value="{!item.b.CalAmount__c}" />
+                            </td>
+                            <td>
+                                <!-- conditionally Display Add or Delete Icons
+                 if rowIndex is 0 then show Add New Row Icon else show delete Icon
+             --> 
+                                
+                                
+                                
+                                <lightning:buttonIcon value="{!item}" variant="error" onclick="{!c.deleteRow}" iconName="utility:delete" class="slds-icon slds-icon_small" size="small" alternativeText="icon"/>
+                                <span class="slds-assistive-text">Delete Icon</span>
+                                
+                                
+                                
+                            </td> 
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+            <br/>
+            <!--Save Button which is call Save js function on click --> 
+            <button class="slds-button slds-button_brand" onclick="{!c.Save}">Save</button>
+        </aura:if> 
+        <aura:set attribute="else">
+            <p style="color:red">Select Atleast 1 Contact</p>
+    </aura:set>
+    </aura:if>    
+</aura:component>

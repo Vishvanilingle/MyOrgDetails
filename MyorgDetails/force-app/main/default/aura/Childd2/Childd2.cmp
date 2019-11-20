@@ -1,0 +1,11 @@
+<aura:component >
+   <aura:attribute name="valueExpectedFromParent" type="String" /> 
+   <aura:handler name="init" value="{!this}" action="{!c.Doinit}"/>
+    
+	<div class="slds-form-element">
+  <label class="slds-form-element__label" for="textarea-id-01">Textarea Label</label>
+  <div class="slds-form-element__control">
+    <textarea id="textarea-id-01" class="slds-textarea" placeholder="Placeholder Text" value="{!v.valueExpectedFromParent}"></textarea>
+  </div>
+</div>
+</aura:component>
