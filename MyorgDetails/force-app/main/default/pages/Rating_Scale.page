@@ -1,0 +1,111 @@
+<apex:page >
+     <apex:stylesheet value="{!URLFOR($Resource.colorpickerDemo, 'build/dependencies/bootstrap-3.0.0.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.colorpickerDemo, 'build/1.2.3/css/pick-a-color-1.2.3.min.css')}"/>
+  
+    <apex:includeScript value="{!URLFOR($Resource.colorpickerDemo, 'build/dependencies/jquery-1.9.1.min.js')}"/>        
+    <apex:includeScript value="{!URLFOR($Resource.colorpickerDemo, 'build/dependencies/tinycolor-0.9.15.min.js')}"/>  
+    <apex:includeScript value="{!URLFOR($Resource.colorpickerDemo, 'build/1.2.3/js/pick-a-color-1.2.3.min.js')}"/>
+    <style>
+     
+        .rating:hover
+        {
+            background-color: gray;
+        }
+        .rating-btn{
+            display:inline-block;
+        }
+       
+    </style>
+    
+    
+    <script>
+    var ratBtnId='';
+    $(document).ready(function(){       
+        $(".rating").click(function(){ 
+         
+             });  
+        
+        
+        $(".a1").pickAColor({
+			  	showSpectrum            : true,
+				showSavedColors         : false,
+				saveColorsPerElement    : true,
+				fadeMenuToggle          : true,
+				showAdvanced			: true,
+				showBasicColors         : true,
+				showHexInput            : true,
+				allowBlank				: true,
+				inlineDropdown			: true
+			});
+    
+
+    });
+    function setVal(color)
+    {
+        
+        document.getElementById(ratBtnId).style.backgroundColor =color;
+        document.getElementById("color_"+ratBtnId).value=color;
+    }
+     function ssss()
+    {
+        alert('aaa');
+        $("#picker_picker_btn3").trigger("click"); 
+           
+    }
+         
+    </script>
+    
+    <div style="margin:20px">
+        
+        <div class="rating-btn" style="display:none"> 
+            <input  type="text" id="picker_btn1" class="a1"  value="" />
+           
+          
+        
+        </div>
+        <div class="rating-btn">  
+            <input  type="text" id="picker_btn2" class="a1" value="" />
+         
+        </div>
+        
+        <div class="rating-btn">  
+            <input  type="text" id="picker_btn3"  class="a1"  />
+         
+        </div>
+        <div class="rating-btn">    
+            <input  type="text" id="picker_btn4" class="a1" value="" />
+                  
+        </div>
+        <div class="rating-btn"> 
+            <input  type="text" id="picker_btn5"  class="a1" value="" />
+            </div>
+        <div class="rating-btn">  
+            <input  type="text" id="picker_btn6" class="a1"  value="" />
+             
+        </div>
+        <div class="rating-btn">
+            <input  type="text" id="picker_btn7" class="a1" value="" />
+                  
+        </div>
+        <div class="rating-btn"> 
+            <input  type="text" id="picker_btn8" class="a1"  value="" />
+                  
+        </div>
+        <div class="rating-btn">  
+            <input  type="text" id="picker_btn9"  class="a1" value="" />
+                  
+        </div>
+        <div class="rating-btn"> 
+            <input  type="text" id="picker_btn10"  class="a1" value="" />
+                         
+        </div>
+          <div class="rating-btn"> 
+            <input  type="button" id="picker_btn10"  class="a1" value="" />
+                         
+        </div>
+    </div> 
+            <div class="btn"> 
+               <input  type="submit" id="picker_btn1"  value="1" class="a2" onclick="ssss" />
+            </div>
+  
+</apex:page>

@@ -1,0 +1,121 @@
+<apex:page >
+    
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+     <apex:includeScript value="{!URLFOR($Resource.colorpickerDemo1,'New/jscolor.js')}"/> 
+      
+    <style>
+        .rating
+        {
+            background-color: white;
+            border-style:none;
+            border-radius:5px;
+            color: black;
+            padding: 15px 22px 15px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    
+    .rating-btn{
+        background-color: white;
+        border: solid 1px gray;
+        border-radius:5px;
+        color: black;
+        
+        text-align: center;
+        text-decoration: none;
+        
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        display:inline-block;
+    }
+    .btn{
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 10px ;
+        text-decoration: none;
+        margin: 4px 2px;
+        cursor: pointer;
+        width:50px;
+        height:50px;
+    }
+    .zero
+    {
+        width:0;
+        height:0;
+       border-style:none;
+    }
+    </style>
+    
+    <script>
+        
+        var ratBtnId='';
+    
+    function update(jscolor,id) {
+        
+        // 'jscolor' instance can be used as a string
+        document.getElementById(ratBtnId).style.backgroundColor = '#' + jscolor;
+        document.getElementById(ratBtnId).style.borderColor  = '#' + jscolor;
+        document.getElementById("div_"+ratBtnId).style.backgroundColor = '#' + jscolor;
+        document.getElementById("picker_"+ratBtnId).style.backgroundColor = '#' + jscolor;
+      
+    }
+    function show(id)
+    {
+        ratBtnId=id;
+        document.getElementById('picker_'+id).jscolor.show(); 
+    }
+    </script>
+    
+    <div style="margin:100px">
+        
+        <div class="rating-btn" id="div_btn1" > 
+            <input class="jscolor zero" type="text"  id="picker_btn1" onchange="update(this.jscolor,this.id)"  />
+            <input  type="submit" id="btn1" class="rating" onclick="show(this.id)" value="1"   />
+            
+        </div>
+        
+        <div class="rating-btn" id="div_btn2">  
+            <input class="jscolor zero " type="text" id="picker_btn2" onchange="update(this.jscolor,this.id)" value="cc66ff" />   
+            <input  type="submit" id="btn2" class="rating" value="2"  onclick="show(this.id)" />
+        </div>
+        <div class="rating-btn" id="div_btn3">  
+            <input class="jscolor zero" type="text"  id="picker_btn3" onchange="update(this.jscolor,this.id)" value="cc66ff" /> 
+            <input  type="submit" id="btn3" class="rating" value="3" onclick="show(this.id)"  />
+        </div>
+        <div class="rating-btn"  id="div_btn4"> 
+            <input class="jscolor zero" type="text"  id="picker_btn4" onchange="update(this.jscolor,this.id)" value="cc66ff" />
+            <input  type="submit" id="btn4" class="rating" value="4" onclick="show(this.id)"  />
+        </div>
+        <div class="rating-btn" id="div_btn5">  
+            <input class="jscolor zero" type=""  id="picker_btn5" onchange="update(this.jscolor,this.id)" value="cc66ff" />      
+            <input  type="submit" id="btn5" class="rating" value="5"  onclick="show(this.id)" />
+        </div>
+        <div class="rating-btn" id="div_btn6">
+            <input class="jscolor zero" type=""  id="picker_btn6" onchange="update(this.jscolor,this.id)" value="cc66ff" />  
+            <input  type="submit" id="btn6" class="rating" value="6"  onclick="show(this.id)" />
+        </div>
+        <div class="rating-btn" id="div_btn7" > 
+            <input class="jscolor zero" type=""  id="picker_btn7" onchange="update(this.jscolor,this.id)" value="cc66ff" />    
+            <input  type="submit" id="btn7" class="rating" value="7"  onclick="show(this.id)" />
+        </div>
+        <div class="rating-btn" id="div_btn8" >  
+            <input class="jscolor zero" type=""  id="picker_btn8" onchange="update(this.jscolor,this.id)" value="cc66ff" />    
+            <input  type="submit" id="btn8" class="rating" value="8"  onclick="show(this.id)" />
+        </div>
+        <div class="rating-btn" id="div_btn9" > 
+            <input class="jscolor zero" type=""  id="picker_btn9" onchange="update(this.jscolor,this.id)" value="cc66ff" />    
+            <input  type="submit" id="btn9" class="rating" value="9"  onclick="show(this.id)" />
+        </div>
+        <div class="rating-btn"  id="div_btn10"> 
+            <input class="jscolor zero" type=""  id="picker_btn10" onchange="update(this.jscolor,this.id)" value="cc66ff" />      
+            <input  type="submit" id="btn10" class="rating" value="10"  onclick="show(this.id)" />
+        </div>
+    </div>
+
+</apex:page>

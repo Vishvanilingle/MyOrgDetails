@@ -1,0 +1,19 @@
+<apex:page >
+    
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+     <apex:includeScript value="{!URLFOR($Resource.colorpickerDemo1,'New/jscolor.js')}"/> 
+         
+         
+         
+<button onclick="document.getElementById('foo').jscolor.show()">
+    Show Picker</button>
+
+<button onclick="document.getElementById('foo').jscolor.hide()">
+    Hide Picker</button>
+
+     <p><input id="foo" class="jscolor" value="cc4499"/></p>
+     
+     
+     <input  type="submit" id="btn1" class="js" onclick="show(this.id)" value="1"   />
+    <p><input id="foo" class="jscolor" value="cc4499"/></p>
+</apex:page>
