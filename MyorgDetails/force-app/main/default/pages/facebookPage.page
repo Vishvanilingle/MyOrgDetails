@@ -1,0 +1,5 @@
+<apex:page controller="FaceBookController">
+    <apex:form >
+        <apex:commandButton value="ClickMe" action="{!fbAction}"/>
+     </apex:form>
+</apex:page>

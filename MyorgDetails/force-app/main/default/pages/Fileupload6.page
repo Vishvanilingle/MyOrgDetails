@@ -1,0 +1,16 @@
+<apex:page standardController="Case" extensions="AttachmentActionFunction">
+<apex:form >
+  <input type= "file" Id= "fileinput"  multiple="multiple" styleclass="fileType"/>
+    <apex:commandButton onclick="uploadFiles(); return false;" value="Upload"/>
+    <apex:actionFunction name="saveFileAF" 
+         action="{!saveFile}" oncomplete="uploadFiles()" rerender="form"  status="uploading">
+        <apex:param name="base64File" value="" assignTo="{!base64}"/>
+        <apex:param name="fileName" value="" assignTo="{!fileName}"/>
+    </apex:actionFunction>
+    <apex:actionStatus id="uploading" >
+        <apex:facet name="start" >
+            <img src="/img/loading.gif" />                    
+  </apex:facet>
+ </apex:actionStatus>    
+</apex:form>
+</apex:page>

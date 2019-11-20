@@ -1,0 +1,4 @@
+<apex:page >
+    <!-- Replace parentId attribute with Id of an object that supports attachments --><br/>
+    <c:fileUploadNew parentId="0016F00002iaJrKQAU"/>
+</apex:page>

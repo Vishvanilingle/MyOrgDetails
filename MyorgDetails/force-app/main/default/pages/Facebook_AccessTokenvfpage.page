@@ -1,0 +1,19 @@
+<apex:page showHeader="false" >
+    <apex:includeLightning />
+  
+    <div id="showdetails"></div>        
+   <script>
+       $Lightning.use("c:Facebook_AccessTokenAppvfpage",function(){
+            $Lightning.createComponent("C:Facebook_AccessToken",
+            {
+                AccessToken:'{!$CurrentPage.parameters.access_token}'
+            },
+            "showdetails",
+            function(cmp){
+                //  component.set("v.respid",'{!$CurrentPage.parameters.respid}');
+            });       
+       
+       } );
+   
+   </script>
+</apex:page>
