@@ -1,0 +1,12 @@
+<apex:page controller="AccDetails">
+    <apex:form >
+    <apex:pageBlock title="Account Summary">
+        <apex:pageBlockSection >
+        	<apex:repeat value="{!AccList}" var="acc"> 
+                <apex:outputText value="{!acc.Name}" /><br/>
+            </apex:repeat>
+           </apex:pageBlockSection>
+    </apex:pageBlock>
+       <!-- <apex:commandButton value="Save" action="{!save}" />-->
+  </apex:form>  
+</apex:page>

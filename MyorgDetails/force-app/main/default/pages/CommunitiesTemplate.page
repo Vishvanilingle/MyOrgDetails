@@ -1,0 +1,9 @@
+<apex:page showHeader="false" sidebar="false" id="CommunitiesTemplate">
+     <div class="header">
+        <img style="float:right;" src="{!$Resource.TechnomileLogo}" width="25%"/>
+    </div>
+  <apex:stylesheet value="{!$Site.Prefix}/communities/CommunitiesStyles.css"/>
+  <apex:insert name="header"/>
+  <apex:insert name="body"/>
+  <apex:insert name="footer"/>
+</apex:page>

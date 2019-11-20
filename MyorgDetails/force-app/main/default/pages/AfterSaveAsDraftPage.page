@@ -1,0 +1,15 @@
+<apex:page showHeader="false" >
+     <apex:includeLightning />
+     <body>
+      
+        <p>
+            <center style="font-size: 30px; padding-top: 165px;" color="red">
+                Your Responce Saved Successfully,
+                Please Submit The Survey As Soon As Possible!!
+                Thank You!
+                
+            </center> 
+        </p>
+    </body>
+
+</apex:page>

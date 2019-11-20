@@ -1,0 +1,17 @@
+<apex:page showHeader="false" standardStylesheets="false" >
+    <apex:includeLightning />
+     <div id="lightning" />
+
+     <script>
+        $Lightning.use("c:Vf_Booking_App", function() {
+          $Lightning.createComponent("c:AccConBillDemo",
+                                     
+          {  },
+          "lightning",
+          function(cmp) {
+            // do some stuff
+          });
+        });
+    </script>
+
+</apex:page>

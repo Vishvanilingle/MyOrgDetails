@@ -1,0 +1,49 @@
+<template >
+
+<div class="slds-theme_default">
+<center>
+<lightning-button label="geContacts" variant="brand" icon-name="standard:contact" onclick={getallaccounts}></lightning-button>
+</center><br/><br/>
+<template if:true={Loader}>
+<div class="exampleHolder">
+<lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+</div>
+</template>  
+ <ul class="slds-list_ordered">
+<template for:each={Contacts} for:item="con" >
+        <li key={con.Id}>
+<center key={con.Id}>
+<p style="font-size:medium;font-family:sans-serif;padding:10px;margin:5px" > </p>
+</center>
+<lightning-record-edit-form record-id={con.Id} onsuccess={handleSuccess} onload={handleload}
+object-api-name="Contact" key={con.Id}> 
+<lightning-messages>
+</lightning-messages>
+<lightning-output-field field-name="AccountId" value={con.AccountId}>
+</lightning-output-field>
+<lightning-input-field field-name="FirstName" value={con.FirstName}>
+</lightning-input-field>
+<lightning-input-field field-name="LastName" value={con.LastName}>
+</lightning-input-field>
+<lightning-input-field field-name="Email" value={con.Email}>
+</lightning-input-field>
+<lightning-button
+    class="slds-m-top_small"
+    variant="brand"
+    type="submit"
+    name="update"
+    label="Update">
+</lightning-button>
+</lightning-record-edit-form>
+<template if:true={hasRendered}> <!--To compare list lenght so that we can go to last record.-->
+<center key={con.Id}>
+<p style="font-size:medium;font-family:sans-serif;padding:10px;margin:5px" >END OF FORM</p>
+</center>
+</template>
+</li>
+</template>
+</ul>
+
+</div>   
+
+</template>

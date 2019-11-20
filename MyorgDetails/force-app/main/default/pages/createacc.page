@@ -1,0 +1,22 @@
+<apex:page standardController="Account" extensions="CreateAccount" tabStyle="Account">
+<apex:form >
+
+<apex:pageBlock title="Pay Increase" mode="edit">
+
+<apex:pageBlockButtons >
+ <apex:commandButton value="Save" action="{!save}" rerender="error"/>            
+</apex:pageBlockButtons>
+
+ 
+
+<apex:pageBlockSection >
+
+
+<apex:inputField value="{!acc.name}" required="true"/>
+
+
+</apex:pageBlockSection>
+   
+</apex:pageBlock>   
+</apex:form>
+</apex:page>

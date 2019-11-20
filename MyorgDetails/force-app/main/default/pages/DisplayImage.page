@@ -1,0 +1,4 @@
+<apex:page showHeader="false" title="DisplayImage" sidebar="false">
+    <apex:image >
+    https://developer.salesforce.com/files/salesforce-developer-network-logo.png</apex:image>   
+</apex:page>

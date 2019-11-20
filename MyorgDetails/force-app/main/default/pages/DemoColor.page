@@ -1,0 +1,107 @@
+<apex:page >
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<style>
+.rating {
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  border: none;
+  border:solid 1px gray;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 75px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.rating span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.rating span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.rating:hover span {
+  padding-right: 25px;
+}
+
+.rating:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+    .picker {
+			border-radius: 5px;
+			width: 36px;
+			height: 36px;
+			cursor: pointer;
+			-webkit-transition: all linear .2s;
+			-moz-transition: all linear .2s;
+			-ms-transition: all linear .2s;
+			-o-transition: all linear .2s;
+			transition: all linear .2s;
+			border: thin solid #eee;
+		}
+		.picker:hover {
+			transform: scale(1.1);
+		}
+</style>
+  <script>
+  var id;
+  $(document).ready(function(){
+  $(".rating").click(function(){
+        
+      $("#picker").trigger("click");
+        id=this.id;
+   
+    });
+        
+     $("#picker").change(function(){
+          var clr=$(this).val(); 
+          
+         
+          $("#"+id).css("background-color", clr);
+          $("#color_"+id).val(clr);
+         $(this).val('#FFFFFF');
+        
+    }); 
+ 
+});
+    
+      </script>
+    <div style="margin:20px">
+        <div >    
+            <input  type="color" id="picker" style="display:none;" value=""/>
+            <input  type="submit" id="but1"  class="rating" value="1"  />
+            <input  type="submit" id="but2"  class="rating" value="2"   />
+            <input  type="submit" id="but3"  class="rating" value="3"   />
+            <input  type="submit" id="but4"  class="rating" value="4"   />
+            <input  type="submit" id="but5"  class="rating" value="5"   />
+            <input  type="submit" id="but6"  class="rating" value="6"   />
+            <input  type="submit" id="but7"  class="rating" value="7"   />
+            <input  type="submit" id="but8"  class="rating" value="8"   />
+            <input  type="submit" id="but9"  class="rating" value="9"   />
+            <input  type="submit" id="but10"  class="rating" value="10"   />
+            <input  type="text" id="color_but1" value=""/>
+            <input  type="text" id="color_but2" value=""/>
+            <input  type="text" id="color_but3" value=""/>
+            <input  type="text" id="color_but4" value=""/>
+            <input  type="text" id="color_but5" value=""/>
+            <input  type="text" id="color_but6" value=""/>
+            <input  type="text" id="color_but7" value=""/>
+            <input  type="text" id="color_but8" value=""/>
+            <input  type="text" id="color_but9" value=""/>
+            <input  type="text" id="color_but10" value=""/>
+        </div>
+    </div> 
+    
+</apex:page>

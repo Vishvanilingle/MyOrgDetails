@@ -1,0 +1,84 @@
+<template>
+<template for:each={ContractsBriefs} for:item="con" >
+    <lightning-record-edit-form record-id={con.Id} onsuccess={handleSuccess} onload={handleload}
+    object-api-name="Contract_Brief__c" key={con.Id}> 
+    <lightning-messages>
+    </lightning-messages>
+
+    <div class="c-container">
+            <lightning-layout>
+                <lightning-layout-item padding="around-small">
+                    <div class="header-column">
+                        <p class="field-title" title="Field 1">  <lightning-output-field field-name="Modification_Date__c" value={con.Modification_Date__c}>
+                            </lightning-output-field></p>
+                        
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small">
+                        <div class="header-column">
+                            <p class="field-title" title="Field 1">  <lightning-input-field field-name="Mod_No__c" value={con.Mod_No__c}>
+                                </lightning-input-field></p>
+                            
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item padding="around-small">
+                            <div class="header-column">
+                                <p class="field-title" title="Field 1">  <lightning-input-field field-name="Description__c" value={con.Description__c}>
+                                    </lightning-input-field></p>
+                                
+                            </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item padding="around-small">
+                                <div class="header-column">
+                                    <p class="field-title" title="Field 1">  <lightning-input-field field-name="Start_Date__c" value={con.Start_Date__c}>
+                                        </lightning-input-field></p>
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item padding="around-small">
+                                    <div class="header-column">
+                                        <p class="field-title" title="Field 1">  <lightning-input-field field-name="End_Date__c" value={con.End_Date__c}>
+                                            </lightning-input-field></p>
+                                    </div>
+                                </lightning-layout-item>
+                                <lightning-layout-item padding="around-small">
+                                        <div class="header-column">
+                                            <p class="field-title" title="Field 1">  <lightning-input-field field-name="Increased_Label__c" value={con.Increased_Label__c}>
+                                                </lightning-input-field></p>
+                                        </div>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item padding="around-small">
+                                            <div class="header-column">
+                                                <p class="field-title" title="Field 1">  <lightning-input-field field-name="Increase_Travel__c" value={con.Increase_Travel__c}>
+                                                    </lightning-input-field></p>
+                                            </div>
+                                        </lightning-layout-item>
+                                        <lightning-layout-item padding="around-small">
+                                                <div class="header-column">
+                                                    <p class="field-title" title="Field 1">  <lightning-input-field field-name="PCA__c" value={con.PCA__c}>
+                                                        </lightning-input-field></p>
+                                                </div>
+                                            </lightning-layout-item>
+                                            
+
+
+            </lightning-layout>
+
+
+
+
+        </div>
+    <lightning-button
+    class="slds-m-top_small"
+    variant="brand"
+    type="submit"
+    name="update"
+    label="Update">
+    </lightning-button>
+    </lightning-record-edit-form>
+
+</template>
+
+
+
+
+</template>

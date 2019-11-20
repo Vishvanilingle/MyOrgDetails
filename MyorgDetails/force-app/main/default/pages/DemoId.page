@@ -1,0 +1,5 @@
+<apex:page >
+    <apex:image value="{!URLFOR($Resource.Sa,'Bened/recruit.png')}" width="50" height="50" alt="Description of image here"/>
+<apex:image value="{!$Resource.Saa}"/>
+    
+</apex:page>

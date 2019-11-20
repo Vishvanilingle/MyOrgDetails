@@ -1,0 +1,17 @@
+<apex:page >
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <apex:includeScript value="{!$Resource.jQuery}"/>
+    <apex:includeScript value="{!URLFOR($Resource.ColorPicker1, 'js/jquery.colorPicker.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.ColorPicker1, 'js/jquery.colorPicker.js')}"/>
+     <apex:includeScript value="{!URLFOR($Resource.ColorPicker1, 'css/colorPicker.css')}"/>
+   
+    <script type="text/javascript" >
+        jQuery.noConflict();
+        jQuery(document).ready(function() {
+            alert('Success');
+             $(".color-btn").ColorPicker({});
+        });
+    </script>
+    <div class="color-btn color-btn-fixed color-btn-square"><b style="background-color: #4154e0;"></b>click me</div>
+
+</apex:page>
