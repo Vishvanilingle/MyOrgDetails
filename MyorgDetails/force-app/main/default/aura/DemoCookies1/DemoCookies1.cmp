@@ -1,0 +1,5 @@
+<aura:component >
+    <ui:button press="{!c.doInit}" >
+    <div class="testClass"> Click me </div>
+    </ui:button>
+</aura:component>

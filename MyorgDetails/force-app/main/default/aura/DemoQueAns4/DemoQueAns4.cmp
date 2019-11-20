@@ -1,0 +1,40 @@
+<aura:component controller="QuestionAnswerclass4" access="global" >
+    <aura:attribute name="Questions" type="List"/> 
+    <aura:attribute name="hideshowMul" type="Boolean" default="false" />
+    <aura:attribute name="Ids" type="List"/>  
+    <aura:attribute name="Selected" type="String"/>   
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>  
+    <aura:iteration items="{!v.Questions}" var="ques"> 
+        <aura:if isTrue="{!ques.Question_Type__c !='Sub Question'}">
+        <ui:outputText aura:id="oTextarea" value="{!ques.Question_Text__c}"/>
+        <aura:iteration items="{!ques.NewAnswers__r}" var="q"> 
+            
+            <aura:if isTrue="{!q.Answer_Type__c =='Single Select'}">
+                <ui:inputRadio aura:id="r0" text="{!q.SubQuestion__c}"  value="" name="{!ques.Name}" label="{!q.Option__c}" change="{!c.getval}"/>
+            </aura:if>
+            <aura:if isTrue="{!q.Answer_Type__c =='Multi Select'}">
+                <ui:inputCheckbox aura:id="checkbox" text="{!q.SubQuestion__c}" value=" " name="{!ques.Name}" label="{!q.Option__c}" change="{!c.getval}"/>
+            </aura:if>
+        </aura:iteration>
+        </aura:if>
+        <aura:if isTrue="{!v.hideshowMul}"> 
+           
+                <aura:if isTrue="{!ques.Question_Type__c =='Sub Question'}">
+                   
+                     <aura:if isTrue="{!ques.SubId==ques.Id}">
+                <ui:outputText aura:id="oTextarea" value="{!ques.Question_Text__c}"/>
+                <aura:iteration items="{!ques.NewAnswers__r}" var="q"> 
+                    
+                    <aura:if isTrue="{!q.Answer_Type__c =='Single Select'}">
+                        <ui:inputRadio aura:id="r0" text="{!q.SubQuestion__c}"  value="" name="{!ques.Name}" label="{!q.Option__c}" change="{!c.getval}"/>
+                    </aura:if>
+                    <aura:if isTrue="{!q.Answer_Type__c =='Multi Select'}">
+                        <ui:inputCheckbox aura:id="checkbox" text="{!q.SubQuestion__c}" value=" " name="{!ques.Name}" label="{!q.Option__c}" change="{!c.getval}"/>
+                    </aura:if>
+                </aura:iteration>
+                    </aura:if>
+                </aura:if>
+           
+        </aura:if>
+    </aura:iteration>
+</aura:component>

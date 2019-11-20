@@ -1,0 +1,68 @@
+<aura:component controller="QuestionAnswerClass" access="global" >  
+    <aura:attribute name="Questions" type="List"/>  
+    <aura:attribute name="hideshowMul" type="Boolean" default="false" />
+    <aura:attribute name="Selected" type="String"/>   
+    <aura:handler event="force:refreshView" action="{!c.isRefreshed}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>  
+    <aura:iteration items="{!v.Questions}" var="ques" indexVar="index"> 
+        
+        
+        <aura:if isTrue="{!ques.AnsType =='Single Select'}">
+            <h1>  Q {!index+1}.<ui:outputText aura:id="oTextarea" value="{!ques.queObj.Question_Text__c}"/></h1>
+            <lightning:select name="{!ques.queObj.Name}" label="" required="true">
+                <aura:iteration items="{!ques.ansList}" var="q">
+                    
+                    <option value="{!q.AnsObj.Option__c}" text="{!q.AnsObj.Option__c}"></option>
+                </aura:iteration>
+            </lightning:select>
+        </aura:if>
+        <aura:if isTrue="{!ques.AnsType =='Multi Select'}">
+            <h1>  Q {!index+1}.<ui:outputText aura:id="oTextarea" value="{!ques.queObj.Question_Text__c}"/></h1>
+            <aura:iteration items="{!ques.ansList}" var="q">
+                <ui:inputCheckbox aura:id="checkbox" text="{!q.AnsObj.Name}" name="{!ques.queObj.Name}" label="{!q.AnsObj.Option__c}" change="{!c.getval}"/>
+            </aura:iteration>
+        </aura:if>
+        <aura:if isTrue="{!ques.AnsType =='Radio Range'}">
+            <h1>  Q {!index+1}.<ui:outputText aura:id="oTextarea" value="{!ques.queObj.Question_Text__c}"/></h1>
+            <aura:iteration items="{!ques.ansList}" var="q">
+                <lightning:radioGroup name="{!ques.queObj.Name}"
+                                      label=""
+                                      options="{!q.qList1}"
+                                      value=""
+                                      type="button" onchange="{!c.getval1}"/>
+            </aura:iteration>
+        </aura:if>
+        
+        
+        <aura:if isTrue="{!v.hideshowMul}"> 
+            
+            <aura:iteration items="{!ques.QueList}" var="q1" indexVar="index">
+                
+                <ui:outputText aura:id="oTextarea" value="{!q1.queObj.Question_Text__c}"/>
+                <aura:iteration items="{!q1.ansList}" var="q3"> 
+                    
+                    <aura:if isTrue="{!q3.AnsObj.Answer_Type__c =='Single Select'}">
+                        <ui:inputRadio aura:id="r0"   value="" required="true" name="{!q1.queObj.Name}" label="{!q3.AnsObj.Option__c}" text="{!q3.AnsObj.Name}" />
+                    </aura:if>
+                    <aura:if isTrue="{!q3.AnsObj.Answer_Type__c =='Multi Select'}">
+                        <ui:inputCheckbox aura:id="checkbox" required="true" value=" " name="{!q1.queObj.Name}" label="{!q3.AnsObj.Option__c}" text="{!q3.AnsObj.Name}" />
+                    </aura:if>
+                    <aura:if isTrue="{!q3.AnsObj.Answer_Type__c =='Radio Range'}">
+                        <lightning:radioGroup name="{!q1.queObj.Name}"
+                                              label=""
+                                              options="{!q3.qList1}"
+                                              value="{!q3.value}"
+                                              type="button" onchange="{!c.getval1}"  required="true"/>
+                    </aura:if>     
+                    
+                    
+                </aura:iteration>
+                
+            </aura:iteration>
+        </aura:if>
+        
+        
+        
+    </aura:iteration> 
+      <lightning:button variant="brand" label="Brand action" title="Brand action" onclick="{! c.SetAns }" />
+</aura:component>

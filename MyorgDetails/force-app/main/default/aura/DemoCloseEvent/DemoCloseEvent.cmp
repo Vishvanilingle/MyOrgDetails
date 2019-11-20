@@ -1,0 +1,4 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+<aura:handler event="lightning:tabClosed" action="{! c.onTabClosed }"/>
+    demo
+</aura:component>
