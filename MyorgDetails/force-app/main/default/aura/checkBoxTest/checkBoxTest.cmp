@@ -1,0 +1,97 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+   
+    <aura:attribute name="status" type="string" default="Home"/>
+    
+    <aura:attribute name="isCyber" type="boolean" default="false"/>
+    <aura:attribute name="isSecurity" type="boolean" default="false"/>
+    <aura:attribute name="isPrivacy" type="boolean" default="false"/>
+    <aura:attribute name="isCompliance" type="boolean" default="false"/>    
+     <aura:attribute name="QuestionValue" type="String" default="Will this vendor host our information on the system?"  />
+    <aura:attribute name="valueofques" type="List" default="option1,option2,option3,option4"/>
+    <aura:attribute name="valueofcheckbox" type="List" default="rr" />
+     <aura:attribute name="isAddQues" type="boolean" default="false" />
+    
+    <aura:attribute name="options" type="List" default="[
+                                                        
+                                                        {'label': '1. Company Name', 'value': 'Onboarding'},
+                                                        {'label': '2. Date Established', 'value': 'Price'},
+                                                        {'label': '3. Completed by', 'value': 'Risk'}
+                                                        ]"/>
+    <aura:if isTrue="{!v.status=='Home'}">
+    <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+        
+        <div class="slds-size_1-of-10">
+            
+            <lightning:input type="checkbox" aura:id="boxPack" value="Cyber" label="Cyber Security" onchange="{!c.checkboxSelect}"/>
+        </div>
+        <div class="slds-size_1-of-10">
+            <lightning:buttonIcon iconName="utility:edit" variant="bare" onclick="{! c.OpenModal }" value="Cyber" alternativeText="Edit" />
+        </div>
+    </div>
+    <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+        <div class="slds-size_1-of-10">
+            <lightning:input type="checkbox" aura:id="boxPack" value="Security" label="Info Security Policy" onchange="{!c.checkboxSelect}"/>
+        </div>
+        <div class="slds-size_1-of-10">
+            <lightning:buttonIcon iconName="utility:edit" variant="bare" onclick="{! c.OpenModal }" alternativeText="Edit" />
+        </div>
+        
+    </div>
+    <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+        <div class="slds-size_1-of-10">
+            <lightning:input type="checkbox" aura:id="boxPack" value="Privacy" label="Privacy Policy" onchange="{!c.checkboxSelect}"/>
+        </div>
+        <div class="slds-size_1-of-10">
+            <lightning:buttonIcon iconName="utility:edit" variant="bare" onclick="{! c.OpenModal }" alternativeText="Edit" />
+        </div>
+    </div>
+    <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+        <div class="slds-size_1-of-10">
+            <lightning:input type="checkbox" aura:id="boxPack" value="Compliance" label="Compliance And Sec" onchange="{!c.checkboxSelect}"/>
+        </div>
+        <div class="slds-size_1-of-10">
+            <lightning:buttonIcon iconName="utility:edit" variant="bare" onclick="{! c.OpenModal }" value="" alternativeText="Edit" />
+        </div>
+    </div>
+         <lightning:button variant="brand" label="Next" title="Brand action" onclick="{!c.goTonext }" />
+    </aura:if>
+    <aura:if isTrue="{!v.status=='Question'}">
+       <aura:if isTrue="{!v.isCyber}">
+             <h1>Questions</h1>
+            <lightning:checkboxGroup name="Checkbox Group Required"
+                                     options="{! v.options }"
+                                     value=""
+                                     />
+           <aura:if isTrue="{!!v.isAddQues}">
+               <lightning:button variant="brand" label="Previous" title="Brand action" onclick="{!c.goToHome }" />
+               <lightning:button variant="brand" label="Add" title="Brand action" onclick="{!c.showAddQues }" />
+                
+            </aura:if>
+            <aura:if isTrue="{!v.isAddQues}">
+                <lightning:select aura:id="select" name="Que3" label="Type"  value="">
+                    <option value="">choose one...</option>
+                    <option value="PickList">PickList</option>
+                    <option value="Checkbox">Checkbox</option>
+                    <option value="Checkbox">Multiselect</option>
+                    <option value="Checkbox">Radio Button</option>
+                </lightning:select>
+                <lightning:input name="input1" label="Question" value="{!v.QuestionValue}" /><br></br>
+                <lightning:input name="input1" label="Answer 1" /><br></br>
+                <lightning:input name="input1" label="Answer 2" /><br></br>
+                <lightning:button variant="brand" label="Save" title="Brand action" onclick="{!c.addQuestion }" />
+            </aura:if>
+            
+        </aura:if>
+        <aura:if isTrue="{!v.isSecurity}">
+            in security
+        </aura:if>
+        <aura:if isTrue="{!v.isPrivacy}">
+            in privacy
+        </aura:if>
+        <aura:if isTrue="{!v.isCompliance}">
+            in compliance
+        </aura:if>
+   
+        </aura:if>
+     
+</aura:component>

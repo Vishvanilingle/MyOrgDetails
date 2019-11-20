@@ -1,0 +1,35 @@
+<aura:component controller="PosttoSocialMediaEXT" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <aura:attribute name="status" type="String"/>
+    <aura:attribute name="link" type="String"/>
+    <aura:attribute name="image" type="String"/>
+    <aura:attribute name="LinkedIn" type="Boolean" default="false"/>
+    <lightning:card title="Social Media Post">
+        <div  class="slds-align_absolute-center">
+            <aura:set attribute="title">
+                <div style="width:40%;">
+                    <div  class="slds-align_absolute-center">
+                        <p style="font-family:serif;font-size: 40px;">Social Media Post</p>
+                    </div>
+                </div>
+            </aura:set>
+            <div style="width:40%;">
+                Post Message:
+                <lightning:textarea label="" name="myTextArea" value="{!v.status}"
+                                    maxlength="1000" />
+                Post Link:
+                <lightning:textarea label="" name="myTextArea" value="{!v.link}"
+                                    maxlength="300" />
+                Post Image Link:
+                <lightning:textarea label="" name="myTextArea" value="{!v.image}"
+                                    maxlength="300" /><br/>
+                <div>
+                    <lightning:input type="checkbox" label="Add To LinkedIn" name="LinkedId" checked="{!v.LinkedIn}" />
+                </div>
+                <div  class="slds-align_absolute-center">
+                    <lightning:button variant="brand" label="Submit" onclick="{! c.handleClick }" />
+                </div>
+            </div> 
+        </div>
+    </lightning:card>
+ 
+</aura:component>

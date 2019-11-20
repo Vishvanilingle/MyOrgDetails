@@ -1,0 +1,10 @@
+<aura:component controller="ParantApex" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <aura:attribute name="messageFromEvent" type="String" />
+    <aura:attribute name="isStatusTrue" type="Boolean" default="false"/>
+    <aura:handler name="cmpEvent" event="c:DemoEvent" action="{!c.handleComponentEvent}"/>
+    <c:child1/>
+     <aura:if isTrue="{!v.isStatusTrue}">
+     <c:Childd2 valueExpectedFromParent="{!v.messageFromEvent}" /> 
+    </aura:if>
+    
+</aura:component>

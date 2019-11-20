@@ -1,0 +1,29 @@
+<aura:component implements="force:lightningQuickAction">
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:html tag="style">
+        @media (max-height: 860px){
+           .slds-modal__content {
+               height: 400px !important;
+           }
+        }
+        @media screen and (max-height: 720px) { 
+           .slds-modal__content {
+                height: 300px !important;
+           }
+        }
+        @media (max-height: 560px){
+           .slds-modal__content {
+               height: 200px !important;
+           }
+        }
+       @media (max-height: 460px){
+           .slds-modal__content {
+               height: 100px !important;
+           }
+       }
+
+    </aura:html>
+    <center class="text-center">
+        <lightning:button variant="base" label="Base" title="Base action" onclick="{! c.handleClick }"/>
+    </center>
+</aura:component>

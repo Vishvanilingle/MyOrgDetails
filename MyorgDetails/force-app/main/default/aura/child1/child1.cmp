@@ -1,0 +1,15 @@
+<aura:component  controller="Ni_Child1Apex" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global"  >
+    <aura:attribute name="Child1String" type="String" />
+    
+    <aura:registerEvent name="cmpEvent" type="c:DemoEvent"/>
+    <div class="slds-form-element">
+        <label class="slds-form-element__label" for="textarea-id-01">Textarea Label</label>
+        <div class="slds-form-element__control">
+            <ui:inputTextArea aura:id="stopWord" class="slds-textarea" placeholder="Placeholder Text"/>
+        </div>
+    </div>
+    <div style="margin-left: 50%;margin-top: 13px;">
+        <button class="slds-button slds-button_brand" onclick="{!c.fireComponentEvent}">Remove</button>
+    </div>
+    
+</aura:component>
